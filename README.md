@@ -20,8 +20,7 @@ Represented different types of shapes and performed various operations on these 
 
 ### Executing program
 
-* Pressing run button
-* Calling the file name
+* Run app1 file
 
   ```
   app1
