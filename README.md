@@ -15,12 +15,8 @@ Represented different types of shapes and performed various operations on these 
 
 ### Installation
 
-For Mac users
-* Product required to be bought
+* MacOS
 * JAVA runtime
-
-For Windows
-* Product required to be bought
 
 ### Executing program
 
