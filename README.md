@@ -2,7 +2,7 @@
 
 ## Description
 
-Represented different types of shapes and performed various operations on these shapes by designing an OOP structure in Matlab
+Represented different types of shapes and performed various operations on these shapes by designing an OOP structure in Matlab.
 
 <code><img height="40" src="https://upload.wikimedia.org/wikipedia/commons/2/21/Matlab_Logo.png"></code>
 
