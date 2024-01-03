@@ -33,6 +33,5 @@ For Windows
 ## Author
 
 Jien Zheng
-##
 
 San Diego State University Computer Science
