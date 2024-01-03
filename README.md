@@ -34,7 +34,6 @@ For Windows
 
 Jien Zheng
 
-Project Link: [https://github.com/jienzheng/MATLAB] (https://github.com/jienzheng/MATLAB)
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Project Link: [https://github.com/jienzheng/MATLAB](https://github.com/jienzheng/MATLAB)
 
 San Diego State University Computer Science
