@@ -1,0 +1,325 @@
+classdef app1 < matlab.apps.AppBase
+
+    % Properties that correspond to app components
+    properties (Access = public)
+        UIFigure             matlab.ui.Figure
+        TabGroup             matlab.ui.container.TabGroup
+        Circle               matlab.ui.container.Tab
+        PickColorButton      matlab.ui.control.Button
+        CreateShapeButton    matlab.ui.control.Button
+        RadiusSlider         matlab.ui.control.Slider
+        RadiusSliderLabel    matlab.ui.control.Label
+        Rectangle            matlab.ui.container.Tab
+        CreateShapeButton_2  matlab.ui.control.Button
+        PickColorButton_2    matlab.ui.control.Button
+        WidthSlider          matlab.ui.control.Slider
+        WidthSliderLabel     matlab.ui.control.Label
+        LengthSlider         matlab.ui.control.Slider
+        LengthSliderLabel    matlab.ui.control.Label
+        Triangle             matlab.ui.container.Tab
+        WidthSliderLabel_2   matlab.ui.control.Label
+        LengthSliderLabel_2  matlab.ui.control.Label
+        CreateShapeButton_3  matlab.ui.control.Button
+        PickColorButton_3    matlab.ui.control.Button
+        HeightSlider         matlab.ui.control.Slider
+        BaseSlider           matlab.ui.control.Slider
+        EqTriangle           matlab.ui.container.Tab
+        LengthSliderLabel_3  matlab.ui.control.Label
+        CreateShapeButton_4  matlab.ui.control.Button
+        PickColorButton_4    matlab.ui.control.Button
+        BaseSlider_2         matlab.ui.control.Slider
+    end
+
+
+    properties (Access = private)
+        radius
+        color
+        length
+        width
+        base
+        height
+        sidelen
+    end
+
+    % Callbacks that handle component events
+    methods (Access = private)
+
+        % Value changed function: RadiusSlider
+        function RadiusSliderValueChanged(app, event)
+            app.radius = app.RadiusSlider.Value;
+        end
+
+        % Button pushed function: PickColorButton
+        function PickColorButtonPushed(app, event)
+            app.color = uisetcolor;
+        end
+
+        % Button pushed function: CreateShapeButton
+        function CreateShapeButtonPushed(app, event)
+            shape = Circle(app.radius, app.color);
+            clf
+            shape.Draw();
+        end
+
+        % Value changing function: RadiusSlider
+        function RadiusSliderValueChanging(app, event)
+            app.radius = event.Value;
+        end
+
+        % Value changed function: LengthSlider
+        function LengthSliderValueChanged(app, event)
+            app.length = app.LengthSlider.Value;
+            
+        end
+
+        % Value changed function: WidthSlider
+        function WidthSliderValueChanged(app, event)
+            app.width = app.WidthSlider.Value;
+            
+        end
+
+        % Button pushed function: PickColorButton_2
+        function PickColorButton_2Pushed(app, event)
+            app.color = uisetcolor;
+
+        end
+
+        % Button pushed function: CreateShapeButton_2
+        function CreateShapeButton_2Pushed(app, event)
+            shape = Rectangle(app.length, app.width, app.color);
+            clf
+            shape.Draw();
+        end
+
+        % Value changed function: BaseSlider
+        function BaseSliderValueChanged(app, event)
+            app.base = app.BaseSlider.Value;
+            
+        end
+
+        % Value changed function: HeightSlider
+        function HeightSliderValueChanged(app, event)
+            app.height = app.HeightSlider.Value;
+            
+        end
+
+        % Button pushed function: PickColorButton_3
+        function PickColorButton_3Pushed(app, event)
+            app.color = uisetcolor;
+        end
+
+        % Button pushed function: CreateShapeButton_3
+        function CreateShapeButton_3Pushed(app, event)
+            shape = Triangle(app.base, app.height, app.color);
+            clf
+            shape.Draw();
+        end
+
+        % Value changed function: BaseSlider_2
+        function BaseSlider_2ValueChanged(app, event)
+            app.sidelen = app.BaseSlider_2.Value;
+            
+        end
+
+        % Button pushed function: CreateShapeButton_4
+        function CreateShapeButton_4Pushed(app, event)
+            shape = EquiTriangle(app.sidelen, app.color);
+            clf
+            shape.Draw();
+        end
+
+        % Button pushed function: PickColorButton_4
+        function PickColorButton_4Pushed(app, event)
+            app.color = uisetcolor;
+        end
+
+        % Value changing function: BaseSlider_2
+        function BaseSlider_2ValueChanging(app, event)
+            app.sidelen = event.Value;
+            
+        end
+    end
+
+    % Component initialization
+    methods (Access = private)
+
+        % Create UIFigure and components
+        function createComponents(app)
+
+            % Create UIFigure and hide until all components are created
+            app.UIFigure = uifigure('Visible', 'off');
+            app.UIFigure.Position = [100 100 640 480];
+            app.UIFigure.Name = 'MATLAB App';
+
+            % Create TabGroup
+            app.TabGroup = uitabgroup(app.UIFigure);
+            app.TabGroup.Position = [1 1 640 480];
+
+            % Create Circle
+            app.Circle = uitab(app.TabGroup);
+            app.Circle.Title = 'Circle';
+
+            % Create RadiusSliderLabel
+            app.RadiusSliderLabel = uilabel(app.Circle);
+            app.RadiusSliderLabel.HorizontalAlignment = 'right';
+            app.RadiusSliderLabel.Position = [61 394 42 22];
+            app.RadiusSliderLabel.Text = 'Radius';
+
+            % Create RadiusSlider
+            app.RadiusSlider = uislider(app.Circle);
+            app.RadiusSlider.MajorTicks = [10 20 30 40 50 60 70 80 90 100];
+            app.RadiusSlider.ValueChangedFcn = createCallbackFcn(app, @RadiusSliderValueChanged, true);
+            app.RadiusSlider.ValueChangingFcn = createCallbackFcn(app, @RadiusSliderValueChanging, true);
+            app.RadiusSlider.Position = [124 403 454 3];
+
+            % Create CreateShapeButton
+            app.CreateShapeButton = uibutton(app.Circle, 'push');
+            app.CreateShapeButton.ButtonPushedFcn = createCallbackFcn(app, @CreateShapeButtonPushed, true);
+            app.CreateShapeButton.Position = [270 40 100 23];
+            app.CreateShapeButton.Text = 'Create Shape';
+
+            % Create PickColorButton
+            app.PickColorButton = uibutton(app.Circle, 'push');
+            app.PickColorButton.ButtonPushedFcn = createCallbackFcn(app, @PickColorButtonPushed, true);
+            app.PickColorButton.Position = [270 228 100 23];
+            app.PickColorButton.Text = 'Pick Color';
+
+            % Create Rectangle
+            app.Rectangle = uitab(app.TabGroup);
+            app.Rectangle.Title = 'Rectangle';
+
+            % Create LengthSliderLabel
+            app.LengthSliderLabel = uilabel(app.Rectangle);
+            app.LengthSliderLabel.HorizontalAlignment = 'right';
+            app.LengthSliderLabel.Position = [51 384 42 22];
+            app.LengthSliderLabel.Text = 'Length';
+
+            % Create LengthSlider
+            app.LengthSlider = uislider(app.Rectangle);
+            app.LengthSlider.MajorTicks = [10 20 30 40 50 60 70 80 90 100];
+            app.LengthSlider.ValueChangedFcn = createCallbackFcn(app, @LengthSliderValueChanged, true);
+            app.LengthSlider.Position = [114 393 449 3];
+
+            % Create WidthSliderLabel
+            app.WidthSliderLabel = uilabel(app.Rectangle);
+            app.WidthSliderLabel.HorizontalAlignment = 'right';
+            app.WidthSliderLabel.Position = [57 309 36 22];
+            app.WidthSliderLabel.Text = 'Width';
+
+            % Create WidthSlider
+            app.WidthSlider = uislider(app.Rectangle);
+            app.WidthSlider.MajorTicks = [10 20 30 40 50 60 70 80 90 100];
+            app.WidthSlider.ValueChangedFcn = createCallbackFcn(app, @WidthSliderValueChanged, true);
+            app.WidthSlider.Position = [114 318 449 3];
+
+            % Create PickColorButton_2
+            app.PickColorButton_2 = uibutton(app.Rectangle, 'push');
+            app.PickColorButton_2.ButtonPushedFcn = createCallbackFcn(app, @PickColorButton_2Pushed, true);
+            app.PickColorButton_2.Position = [270 228 100 23];
+            app.PickColorButton_2.Text = 'Pick Color';
+
+            % Create CreateShapeButton_2
+            app.CreateShapeButton_2 = uibutton(app.Rectangle, 'push');
+            app.CreateShapeButton_2.ButtonPushedFcn = createCallbackFcn(app, @CreateShapeButton_2Pushed, true);
+            app.CreateShapeButton_2.Position = [270 39 100 23];
+            app.CreateShapeButton_2.Text = 'Create Shape';
+
+            % Create Triangle
+            app.Triangle = uitab(app.TabGroup);
+            app.Triangle.Title = 'Tirangle';
+
+            % Create BaseSlider
+            app.BaseSlider = uislider(app.Triangle);
+            app.BaseSlider.MajorTicks = [10 20 30 40 50 60 70 80 90 100];
+            app.BaseSlider.ValueChangedFcn = createCallbackFcn(app, @BaseSliderValueChanged, true);
+            app.BaseSlider.Position = [114 393 449 3];
+
+            % Create HeightSlider
+            app.HeightSlider = uislider(app.Triangle);
+            app.HeightSlider.MajorTicks = [10 20 30 40 50 60 70 80 90 100];
+            app.HeightSlider.ValueChangedFcn = createCallbackFcn(app, @HeightSliderValueChanged, true);
+            app.HeightSlider.Position = [114 318 449 3];
+
+            % Create PickColorButton_3
+            app.PickColorButton_3 = uibutton(app.Triangle, 'push');
+            app.PickColorButton_3.ButtonPushedFcn = createCallbackFcn(app, @PickColorButton_3Pushed, true);
+            app.PickColorButton_3.Position = [270 228 100 23];
+            app.PickColorButton_3.Text = 'Pick Color';
+
+            % Create CreateShapeButton_3
+            app.CreateShapeButton_3 = uibutton(app.Triangle, 'push');
+            app.CreateShapeButton_3.ButtonPushedFcn = createCallbackFcn(app, @CreateShapeButton_3Pushed, true);
+            app.CreateShapeButton_3.Position = [270 39 100 23];
+            app.CreateShapeButton_3.Text = 'Create Shape';
+
+            % Create LengthSliderLabel_2
+            app.LengthSliderLabel_2 = uilabel(app.Triangle);
+            app.LengthSliderLabel_2.HorizontalAlignment = 'right';
+            app.LengthSliderLabel_2.Position = [61 384 32 22];
+            app.LengthSliderLabel_2.Text = 'Base';
+
+            % Create WidthSliderLabel_2
+            app.WidthSliderLabel_2 = uilabel(app.Triangle);
+            app.WidthSliderLabel_2.HorizontalAlignment = 'right';
+            app.WidthSliderLabel_2.Position = [53 309 40 22];
+            app.WidthSliderLabel_2.Text = 'Height';
+
+            % Create EqTriangle
+            app.EqTriangle = uitab(app.TabGroup);
+            app.EqTriangle.Title = 'EqTriangle';
+
+            % Create BaseSlider_2
+            app.BaseSlider_2 = uislider(app.EqTriangle);
+            app.BaseSlider_2.MajorTicks = [10 20 30 40 50 60 70 80 90 100];
+            app.BaseSlider_2.ValueChangedFcn = createCallbackFcn(app, @BaseSlider_2ValueChanged, true);
+            app.BaseSlider_2.ValueChangingFcn = createCallbackFcn(app, @BaseSlider_2ValueChanging, true);
+            app.BaseSlider_2.Position = [114 393 449 3];
+
+            % Create PickColorButton_4
+            app.PickColorButton_4 = uibutton(app.EqTriangle, 'push');
+            app.PickColorButton_4.ButtonPushedFcn = createCallbackFcn(app, @PickColorButton_4Pushed, true);
+            app.PickColorButton_4.Position = [270 228 100 23];
+            app.PickColorButton_4.Text = 'Pick Color';
+
+            % Create CreateShapeButton_4
+            app.CreateShapeButton_4 = uibutton(app.EqTriangle, 'push');
+            app.CreateShapeButton_4.ButtonPushedFcn = createCallbackFcn(app, @CreateShapeButton_4Pushed, true);
+            app.CreateShapeButton_4.Position = [270 39 100 23];
+            app.CreateShapeButton_4.Text = 'Create Shape';
+
+            % Create LengthSliderLabel_3
+            app.LengthSliderLabel_3 = uilabel(app.EqTriangle);
+            app.LengthSliderLabel_3.HorizontalAlignment = 'right';
+            app.LengthSliderLabel_3.Position = [24 384 69 22];
+            app.LengthSliderLabel_3.Text = 'Side Length';
+
+            % Show the figure after all components are created
+            app.UIFigure.Visible = 'on';
+        end
+    end
+
+    % App creation and deletion
+    methods (Access = public)
+
+        % Construct app
+        function app = app1
+
+            % Create UIFigure and components
+            createComponents(app)
+
+            % Register the app with App Designer
+            registerApp(app, app.UIFigure)
+
+            if nargout == 0
+                clear app
+            end
+        end
+
+        % Code that executes before app deletion
+        function delete(app)
+
+            % Delete UIFigure when app is deleted
+            delete(app.UIFigure)
+        end
+    end
+end
