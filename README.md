@@ -26,6 +26,7 @@ For Windows
 
 * Pressing run button
 * Calling the file name
+
   ```
   app1
   ```
@@ -37,3 +38,9 @@ Jien Zheng
 Project Link: [https://github.com/jienzheng/MATLAB](https://github.com/jienzheng/MATLAB)
 
 San Diego State University Computer Science
+
+## Acknowledgements
+
+* [MATLAB Documentation](https://www.mathworks.com/help/matlab/)
+* [StackOverFlow](https://stackoverflow.com/)
+
