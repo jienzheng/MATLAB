@@ -32,5 +32,5 @@ For Windows
 
 ## Author
 
-Jien Zheng
+Jien Zheng <br />
 San Diego State University Computer Science
