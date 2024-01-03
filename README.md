@@ -15,8 +15,8 @@ Represented different types of shapes and performed various operations on these 
 
 ### Installation
 
-* MacOS
 * JAVA runtime
+* MATLAB application
 
 ### Executing program
 
