@@ -30,8 +30,11 @@ For Windows
   app1
   ```
 
-## Author
+## Contact
 
 Jien Zheng
+
+Project Link: [https://github.com/jienzheng/MATLAB] (https://github.com/jienzheng/MATLAB)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 San Diego State University Computer Science
