@@ -26,7 +26,7 @@ Represented different types of shapes and performed various operations on these 
   app1
   ```
 
-## Contact
+## Author
 
 Jien Zheng
 
